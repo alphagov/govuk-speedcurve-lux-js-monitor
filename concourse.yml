@@ -58,6 +58,6 @@ jobs:
             silent: true
             text: |
               :kaboom:
-              The Concourse Speedcurve monitor job has failed
+              The Concourse SpeedCurve LUX monitor job has failed
               Failed build: http://cd.gds-reliability.engineering/teams/$BUILD_TEAM_NAME/pipelines/$BUILD_PIPELINE_NAME/jobs/$BUILD_JOB_NAME/builds/$BUILD_NAME
-              See https://docs.publishing.service.gov.uk/manual/concourse.html for more details of this job.
+              See https://github.com/alphagov/govuk-speedcurve-lux-js-monitor/ for more details of this job.
