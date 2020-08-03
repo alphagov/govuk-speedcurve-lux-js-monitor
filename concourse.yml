@@ -7,6 +7,12 @@ resource_types:
       tag: latest
 
 resources:
+  - name: govuk-speedcurve-lux-js-monitor-git
+    type: git
+    source:
+      uri: https://github.com/alphagov/govuk-speedcurve-lux-js-monitor.git
+      branch: master
+
   - name: every-30m
     type: time
     source:
@@ -18,6 +24,13 @@ resources:
       url: ((govuk_platform_health_slack_webhook_url))
 
 jobs:
+  - name: update-pipeline
+    plan:
+      - get: govuk-speedcurve-lux-js-monitor-git
+        trigger: true
+      - set_pipeline: govuk-speedcurve-lux-js-monitor
+        file: govuk-speedcurve-lux-js-monitor-git/concourse.yml
+
   - name: speedcurve-monitor
     plan:
       - get: every-30m
