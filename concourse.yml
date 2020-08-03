@@ -57,7 +57,6 @@ jobs:
             icon_emoji: ':concourse:'
             silent: true
             text: |
-              :kaboom:
-              The Concourse SpeedCurve LUX monitor job has failed
+              :kaboom: The Concourse SpeedCurve LUX monitor job has failed, this likely means the JavaScript needs updating.
               Failed build: http://cd.gds-reliability.engineering/teams/$BUILD_TEAM_NAME/pipelines/$BUILD_PIPELINE_NAME/jobs/$BUILD_JOB_NAME/builds/$BUILD_NAME
               See https://github.com/alphagov/govuk-speedcurve-lux-js-monitor/ for more details of this job.
