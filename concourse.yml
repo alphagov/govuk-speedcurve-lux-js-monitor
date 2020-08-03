@@ -1,0 +1,50 @@
+---
+resource_types:
+  - name: slack-notification
+    type: docker-image
+    source:
+      repository: cfcommunity/slack-notification-resource
+      tag: latest
+
+resources:
+  - name: every-30m
+    type: time
+    source:
+      interval: 30m
+
+  - name: govuk-frontenders-slack
+    type: slack-notification
+    source:
+      url: ((govuk_platform_health_slack_webhook_url))
+
+jobs:
+  - name: speedcurve-monitor
+    plan:
+      - get: every-30m
+        trigger: true
+      - task: Speedcurve monitor
+        config:
+          platform: linux
+          image_resource:
+            type: docker-image
+            source:
+              repository: ruby
+              tag: 2.6.6
+          run:
+            path: sh
+            args:
+              - -c
+              - |
+                curl https://cdn.speedcurve.com/js/lux.js\?id\=47044334 | grep 'version="206"' || exit 1
+        on_failure:
+          put: govuk-frontenders-slack
+          params:
+            channel: '#govuk-frontenders'
+            username: 'Concourse (speedcurve lux js monitor)'
+            icon_emoji: ':concourse:'
+            silent: true
+            text: |
+              :kaboom:
+              The Concourse Speedcurve monitor job has failed
+              Failed build: http://cd.gds-reliability.engineering/teams/$BUILD_TEAM_NAME/pipelines/$BUILD_PIPELINE_NAME/jobs/$BUILD_JOB_NAME/builds/$BUILD_NAME
+              See https://docs.publishing.service.gov.uk/manual/concourse.html for more details of this job.
