@@ -5,6 +5,8 @@ resource_types:
     source:
       repository: cfcommunity/slack-notification-resource
       tag: latest
+      username: ((docker_hub_username))
+      password: ((docker_hub_authtoken))
 
 resources:
   - name: govuk-speedcurve-lux-js-monitor-git
@@ -43,6 +45,8 @@ jobs:
             source:
               repository: ruby
               tag: 2.6.6
+              username: ((docker_hub_username))
+              password: ((docker_hub_authtoken))
           run:
             path: sh
             args:
