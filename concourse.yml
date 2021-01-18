@@ -15,10 +15,10 @@ resources:
       uri: https://github.com/alphagov/govuk-speedcurve-lux-js-monitor.git
       branch: master
 
-  - name: every-24h
+  - name: every-2h
     type: time
     source:
-      interval: 24h
+      interval: 2h
 
   - name: govuk-frontenders-slack
     type: slack-notification
@@ -35,7 +35,7 @@ jobs:
 
   - name: speedcurve-monitor
     plan:
-      - get: every-24h
+      - get: every-2h
         trigger: true
       - task: Speedcurve monitor
         config:
