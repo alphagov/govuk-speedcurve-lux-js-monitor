@@ -52,7 +52,7 @@ jobs:
             args:
               - -c
               - |
-                curl https://cdn.speedcurve.com/js/lux.js\?id\=47044334 | grep 'version="211"' || exit 1
+                curl https://cdn.speedcurve.com/js/lux.js\?id\=47044334 | grep 'version="213"' || exit 1
         on_failure:
           put: govuk-frontenders-slack
           params:
