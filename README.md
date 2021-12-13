@@ -1,5 +1,7 @@
 # GOV.UK Speedcurve LUX JS Monitor
 
+⚠️ __This project has been archived, the functionality has been ported to [govuk-puppet](https://github.com/alphagov/govuk-puppet/pull/11339)__
+
 This is the repo for a Concourse job which checks that the version of the [SpeedCurve LUX] JavaScript we've embedded into GOV.UK matches the latest version. SpeedCurve LUX is a tool that monitors how quickly pages load, we're [embedding the script ourselves][self-host] for security reasons.
 
 [SpeedCurve LUX]: https://speedcurve.com/features/lux/
